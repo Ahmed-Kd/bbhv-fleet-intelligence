@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBHV Fleet Management - Professional Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css"/>
+    
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🚗 BBHV Fleet Management</h1>
+            <div class="header-stats">
+                <div class="stat-badge">
+                    <span class="stat-label">Véhicules actifs</span>
+                    <span class="stat-value" id="vehicle-count">0</span>
+                </div>
+                <div class="stat-badge">
+                    <span class="stat-label">Alertes</span>
+                    <span class="stat-value alert" id="alert-count">0</span>
+                </div>
+                <div class="stat-badge">
+                    <span class="stat-label">Connexion</span>
+                    <span class="stat-value" id="ws-status">🔴 Déconnecté</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="layout">
+        <div class="left-panel">
+            <div class="card">
+                <h3>🚙 Vue Flotte</h3>
+                <div id="fleet-list" class="fleet-list">
+                    <p class="loading">En attente de données...</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🚨 Centre d'Alertes</h3>
+                <ul id="alert-list" class="alert-list">
+                    <li class="no-alerts">Aucune alerte active</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="card map-card">
+                <h3>🗺️ Carte de la Flotte</h3>
+                <div id="map"></div>
+            </div>
+
+            <div id="vehicle-inspector" class="card inspector-card" style="display: none;">
+                <div class="inspector-header">
+                    <h3 id="inspector-title">📊 Véhicule Sélectionné</h3>
+                    <button id="close-inspector" class="close-btn">✖ Fermer</button>
+                </div>
+                <div class="inspector-content">
+                    <div id="vehicle-details" class="vehicle-details"></div>
+                    <canvas id="vehicle-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMPORTANT : Script à la fin du body -->
+    <script src="/static/app.js"></script>
+</body>
+</html>

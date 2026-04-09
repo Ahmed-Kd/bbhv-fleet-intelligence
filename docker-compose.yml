@@ -1,0 +1,133 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: mosquitto
+    networks:
+      - bbhv-net
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    networks:
+      - bbhv-net
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    networks:
+      - bbhv-net
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_CREATE_TOPICS: "vehicle_telemetry:1:1"
+    depends_on:
+      - zookeeper
+
+  bridge:
+    build: ./bridge
+    container_name: mqtt-kafka-bridge
+    networks:
+      - bbhv-net
+    depends_on:
+      - mosquitto
+      - kafka
+
+  simulator-1:
+    build: ./simulator
+    container_name: vehicle-simulator-1
+    networks:
+      - bbhv-net
+    depends_on:
+      - mosquitto
+    environment:
+      MQTT_BROKER: "mosquitto"
+      MQTT_PORT: 1883
+      VEHICLE_ID: "VH-1001"
+      BASE_LAT: "48.8566"
+      BASE_LON: "2.3522"
+
+  simulator-2:
+    build: ./simulator
+    container_name: vehicle-simulator-2
+    networks:
+      - bbhv-net
+    depends_on:
+      - mosquitto
+    environment:
+      MQTT_BROKER: "mosquitto"
+      MQTT_PORT: 1883
+      VEHICLE_ID: "VH-1002"
+      BASE_LAT: "48.8606"
+      BASE_LON: "2.3376"
+
+  simulator-3:
+    build: ./simulator
+    container_name: vehicle-simulator-3
+    networks:
+      - bbhv-net
+    depends_on:
+      - mosquitto
+    environment:
+      MQTT_BROKER: "mosquitto"
+      MQTT_PORT: 1883
+      VEHICLE_ID: "VH-1003"
+      BASE_LAT: "48.8738"
+      BASE_LON: "2.3364"
+
+  simulator-4:
+    build: ./simulator
+    container_name: vehicle-simulator-4
+    networks:
+      - bbhv-net
+    depends_on:
+      - mosquitto
+    environment:
+      MQTT_BROKER: "mosquitto"
+      MQTT_PORT: 1883
+      VEHICLE_ID: "VH-1004"
+      BASE_LAT: "48.8448"
+      BASE_LON: "2.3735"
+
+  simulator-5:
+    build: ./simulator
+    container_name: vehicle-simulator-5
+    networks:
+      - bbhv-net
+    depends_on:
+      - mosquitto
+    environment:
+      MQTT_BROKER: "mosquitto"
+      MQTT_PORT: 1883
+      VEHICLE_ID: "VH-1005"
+      BASE_LAT: "48.8324"
+      BASE_LON: "2.3215"
+
+  processor:
+    build: ./microservice
+    container_name: telemetry-processor
+    networks:
+      - bbhv-net
+    depends_on:
+      - kafka
+
+  dashboard:
+    build: ./dashboard
+    container_name: dashboard
+    networks:
+      - bbhv-net
+    ports:
+      - "5000:8000"
+    depends_on:
+      - processor
+
+networks:
+  bbhv-net:
+    driver: bridge

@@ -1,0 +1,305 @@
+/* ==================== RESET & GLOBAL ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+    background: #f3f4f6;
+    color: #1f2937;
+    overflow: hidden;
+}
+
+/* ==================== HEADER ==================== */
+header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: white;
+    padding: 16px 24px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+header h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.header-stats {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-badge {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px 16px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-label {
+    font-size: 12px;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+.stat-value.alert {
+    color: #fbbf24;
+}
+
+/* ==================== LAYOUT ==================== */
+.layout {
+    display: flex;
+    height: calc(100vh - 80px);
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 16px;
+    gap: 16px;
+}
+
+.left-panel {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+}
+
+.right-panel {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ==================== CARDS ==================== */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: #1f2937;
+    font-weight: 600;
+}
+
+/* ==================== FLEET LIST ==================== */
+.fleet-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.fleet-item {
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+    margin-bottom: 8px;
+}
+
+.fleet-item:hover {
+    background: #f3f4f6;
+    border-color: #3b82f6;
+}
+
+.fleet-item.selected {
+    background: #eff6ff;
+    border-color: #3b82f6;
+}
+
+.fleet-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.fleet-item-metrics {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.badge-ok {
+    background: #10b981;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.badge-alert {
+    background: #ef4444;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.loading {
+    text-align: center;
+    color: #9ca3af;
+    padding: 20px;
+}
+
+/* ==================== ALERT CENTER ==================== */
+.alert-list {
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.alert-item {
+    padding: 10px;
+    border-left: 4px solid #ef4444;
+    background: #fef2f2;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.alert-item:hover {
+    background: #fee2e2;
+}
+
+.alert-value {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+.no-alerts {
+    color: #10b981;
+    padding: 12px;
+    text-align: center;
+}
+
+/* ==================== MAP ==================== */
+.map-card {
+    flex: 1;
+}
+
+#map {
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* ==================== VEHICLE INSPECTOR ==================== */
+.inspector-card {
+    flex: 1;
+}
+
+.inspector-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.close-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.close-btn:hover {
+    background: #dc2626;
+}
+
+.inspector-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.detail-item {
+    background: #f9fafb;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    font-size: 12px;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-top: 4px;
+}
+
+#vehicle-chart {
+    height: 300px !important;
+}
+
+/* ==================== SCROLLBAR ==================== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1200px) {
+    .layout {
+        flex-direction: column;
+    }
+    
+    .left-panel, .right-panel {
+        width: 100%;
+    }
+}
