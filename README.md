@@ -11,11 +11,6 @@
 [![License](https://img.shields.io/badge/License-Academic-orange?style=flat)](./LICENSE)
 
 ---
-
-## Contexte & Objectif
-
-Projet réalisé dans le cadre du **Master 2 BDIA — Architecture & Middlewares**, Université de Bourgogne (Décembre 2025).
-
 **Ahmed El Aziz KAIDI**
 
 Ce projet est une **Preuve de Concept (PoC)** répondant à la problématique de l'entreprise fictive **BBHV** (*Bourgogne Blue Hydrogen Vehicles*) : comment collecter, acheminer et visualiser en temps réel la télémétrie d'une flotte de véhicules à hydrogène, tout en détectant automatiquement les anomalies critiques ?
