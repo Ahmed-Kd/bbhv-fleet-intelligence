@@ -231,9 +231,5 @@ Le rapport complet détaillant les choix d'architecture, l'analyse des middlewar
 ## Auteur
 
 **Ahmed El Aziz KAIDI**
-Master 2 BDIA — Université de Bourgogne
-Décembre 2025
 
 ---
-
-*Projet académique réalisé dans un cadre pédagogique — architecture conçue pour démontrer les principes d'intégration middleware en environnement distribué.*
